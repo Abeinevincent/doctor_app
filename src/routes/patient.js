@@ -210,15 +210,17 @@ router.put(
 
       const appointment = dr.appointments.id(appointmentId);
       if (!appointment) {
+        console.log("no appt");
         return res.status(404).json({ error: "Appointment not found" });
       }
+
+      console.log(appointment, dr, "appt");
 
       appointment.meeting_time = meeting_time;
       appointment.meeting_link = meeting_link;
       appointment.meeting_date = meeting_date;
       appointment.is_replied = true;
-
-      console.log(appointment.meeting_link);
+      dr.location.country = "Uganda";
 
       await dr.save(); // Save the changes to the user document
       // The appointment was found, you can now use it
